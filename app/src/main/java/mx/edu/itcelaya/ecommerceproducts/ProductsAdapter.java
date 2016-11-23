@@ -80,19 +80,23 @@ public class ProductsAdapter extends BaseAdapter {
         try {
             final Bitmap bitmap = new BackgroundTask().execute(sUrl).get();
             img1.setImageBitmap(bitmap);
-            //Final para poder usarlas dentro del try
+
+            //---------------------------------------------------------------------------------------------------------
+            //código agregado
             final String url = "https://172.20.118.67/store_itc/wc-api/v3/products/" + item.getId() + "/reviews";
             final String consumer_key = "ck_1e92f3593393b4b67a9c36b4cc3fa39cec0494fa";
             final String consumer_secret = "cs_9acec12116917aaa12187e38cde674e3f1b62057";
+            //---------------------------------------------------------------------------------------------------------
 
             img1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String jsonResult;
+                    //arreglo para guardar los elementos obtenidos de json
                     List<Reviews> items = new ArrayList<Reviews>();
-                    //checar el null!! por si no funciona la app checar porqué valor podría cambiarse
-                    LoadProductsTask tarea = new LoadProductsTask(null, consumer_key, consumer_secret);
 
+                    //elementos para obtener el json
+                    LoadProductsTask tarea = new LoadProductsTask(null, consumer_key, consumer_secret);
+                    String jsonResult;
                     try {
                         jsonResult = tarea.execute(new String[] { url }).get();
                         JSONObject jsonResponse = new JSONObject(jsonResult);
