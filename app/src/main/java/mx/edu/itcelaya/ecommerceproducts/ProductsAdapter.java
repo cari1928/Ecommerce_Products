@@ -112,36 +112,38 @@ public class ProductsAdapter extends BaseAdapter {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    //Toast.makeText(getBaseContext(), jsonResult, Toast.LENGTH_LONG).show();
 
-                    //listProducts.setAdapter(new ProductsAdapter(this, items));
-
-                    final Reviews rItems = items.get(0);
-
-                    //for(int i = 0; i < items.size(); i++) {
-
-                    //}
-
-                    //-----------------------------------------------------------------------------------------
-
+                    //Esto es del código original
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    //comentados para que se vean los reviews
                     //ImageView ivFoto = new ImageView(context);
-                    TextView tvNombre = new TextView(context);
-                    TextView review = new TextView(context);
-                    tvNombre.setText(item.getTitle());
-                    review.setText(rItems.getReview());
                     //ivFoto.setImageBitmap(bitmap);
+                    TextView tvNombre = new TextView(context);
+                    tvNombre.setText(item.getTitle());
 
                     LinearLayout layout1 = new LinearLayout(context);
                     layout1.setOrientation(LinearLayout.VERTICAL);
                     //layout1.addView(ivFoto);
                     layout1.addView(tvNombre);
-                    layout1.addView(review);
+
+                    //--------------------------------------------------------------------------------------
+                    //código agregado
+                    //final Reviews rItems = items.get(0);
+                    Reviews[] aReviews = new Reviews[items.size()];
+
+                    for(int i = 0; i < items.size(); i++) {
+                        aReviews[i] = items.get(i);
+                        TextView review = new TextView(context);
+                        review.setText(aReviews[i].getReview());
+                        layout1.addView(review);
+                    }
+
+                    //-----------------------------------------------------------------------------------------
+
                     //builder.setView(ivFoto);
                     builder.setView(layout1);
                     AlertDialog dialogFoto = builder.create();
                     dialogFoto.show();
-
                 }
             });
         } catch (InterruptedException e) {
