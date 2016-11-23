@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listProducts;
     List<Products> items = new ArrayList<Products>();
+    List<Reviews> reviews = new ArrayList<Reviews>();
     String consumer_key = "ck_1e92f3593393b4b67a9c36b4cc3fa39cec0494fa";
     String consumer_secret = "cs_9acec12116917aaa12187e38cde674e3f1b62057";
+    String id;
 
     //String url = "https://192.168.1.68/store_itc/wc-api/v3/products";
     String url = "https://172.20.118.67/store_itc/wc-api/v3/products";
+    //String url2 = "https://172.20.118.67/store_itc/wc-api/v3/products/" + id + "/reviews";
     String jsonResult;
 
     @Override
