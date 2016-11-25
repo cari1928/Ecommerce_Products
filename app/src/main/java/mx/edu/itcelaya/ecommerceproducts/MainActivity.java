@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog dialogFoto;
     Button btnRegresa;
 
-    //String url = "https://192.168.1.68/store_itc/wc-api/v3/products";
-    String url = "https://10.247.67.17/store_itc/wc-api/v3/products";
+    String url = "https://192.168.1.68/store_itc/wc-api/v3/products";
+    //String url = "https://10.247.67.17/store_itc/wc-api/v3/products";
     String jsonResult;
 
     @Override
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
     private void loadReviews(int id) {
-        //String url2 = "https://10.247.67.17/store_itc/wc-api/v3/products/" + id + "/reviews";
         url += "/" + id + "/reviews";
         LoadProductsTask tarea = new LoadProductsTask(this, consumer_key, consumer_secret);
         try {
@@ -96,7 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String reviewer_name = jsonChildNode.optString("reviewer_name");
                 String reviewer_email = jsonChildNode.optString("reviewer_email");
 
-                aReviews.add(review);
+                //aReviews.add(review);
+                rItems.add(new Reviews(id, created_at, review, reviewer_name, reviewer_email));
+            }
 
                 //para mostrar los reviews
                 AlertDialog.Builder builder = new AlertDialog.Builder(this); //recibe el contexto de la app
@@ -105,8 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //nuevo listview en conjunto con un arrayadapter
                 ListView vReviews = new ListView(this);
-                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, aReviews);
-                vReviews.setAdapter(adapter); //se pasa la info a listview
+                vReviews.setAdapter(new ReviewsAdapter(this, rItems));
 
                 //boton
                 btnRegresa = new Button(this);
@@ -121,9 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dialogFoto = builder.create(); //se termina de crear el dialogo
                 dialogFoto.show(); //se muestra el dialogo
 
-                //util para cuando existe la clase reviews
-                //rItems.add(new Reviews(id, created_at, review, reviewer_name, reviewer_email));
-            }
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error" + e.toString(),

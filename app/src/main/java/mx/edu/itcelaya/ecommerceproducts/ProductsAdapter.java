@@ -84,7 +84,7 @@ public class ProductsAdapter extends BaseAdapter {
             //---------------------------------------------------------------------------------------------------------
             //código agregado
             //final String url = "https://172.20.118.67/store_itc/wc-api/v3/products/" + item.getId() + "/reviews";
-            final String url = "https://10.247.67.17/store_itc/wc-api/v3/products/" + item.getId() + "/reviews";
+            final String url = "https://192.168.1.68/store_itc/wc-api/v3/products/" + item.getId() + "/reviews";
             final String consumer_key = "ck_1e92f3593393b4b67a9c36b4cc3fa39cec0494fa";
             final String consumer_secret = "cs_9acec12116917aaa12187e38cde674e3f1b62057";
             //---------------------------------------------------------------------------------------------------------
@@ -162,7 +162,6 @@ public class ProductsAdapter extends BaseAdapter {
         return rowView;
 
     }
-
 
     private InputStream OpenHttpConnection(String urlString)
             throws IOException
